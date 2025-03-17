@@ -6,10 +6,10 @@ public class MercadoPago extends MetodoPago implements PagoVirtual {
     private String mail;
     private String ip;
 
-    public MercadoPago(String fecha, String hora, String nombreConsumidor, String nombreDestinatario, double monto, int id, String mail,String ip){
+    public MercadoPago(String fecha, String hora, String nombreConsumidor, String nombreDestinatario, double monto, int id, String mail,String ip) {
         super(fecha, hora, nombreConsumidor, nombreDestinatario, monto, id);
         this.mail=mail;
-        this.ip=ip;
+        this.ip = ip;
     }
 
     public String getMail() {

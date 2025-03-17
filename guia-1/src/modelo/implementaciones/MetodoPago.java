@@ -1,6 +1,5 @@
 package modelo.implementaciones;
 
-import excepciones.MontoInvalidoException;
 import modelo.interfaces.Pago;
 
 public abstract class MetodoPago implements Pago {
@@ -12,14 +11,13 @@ public abstract class MetodoPago implements Pago {
     int id;
 
     public MetodoPago(String fecha, String hora, String nombreConsumidor, String nombreDestinatario, double monto, int id) {
-        this.fecha=fecha;
-        this.hora=hora;
-        this.nombreConsumidor=nombreConsumidor;
-        this.nombreDestinatario=nombreDestinatario;
+        this.fecha=  fecha;
+        this.hora = hora;
+        this.nombreConsumidor = nombreConsumidor;
+        this.nombreDestinatario = nombreDestinatario;
         this.monto = monto;
-        this.id=id;
+        this.id = id;
     }
-
 
     @Override
     public String getFecha() {

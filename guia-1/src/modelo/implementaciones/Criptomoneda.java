@@ -6,10 +6,10 @@ public class Criptomoneda extends MetodoPago implements PagoVirtual {
     private String idBilletera;
     private String ip;
 
-    public Criptomoneda (String fecha, String hora, String nombreConsumidor, String nombreDestinatario, double monto, int id, String idBilletera, String ip){
+    public Criptomoneda(String fecha, String hora, String nombreConsumidor, String nombreDestinatario, double monto, int id, String idBilletera, String ip) {
         super(fecha, hora, nombreConsumidor, nombreDestinatario, monto, id);
-        this.idBilletera=idBilletera;
-        this.ip=ip;
+        this.idBilletera = idBilletera;
+        this.ip = ip;
     }
 
     public String getIdBilletera() {
@@ -29,5 +29,4 @@ public class Criptomoneda extends MetodoPago implements PagoVirtual {
     public void setIp(String ip) {
         this.ip = ip;
     }
-
 }

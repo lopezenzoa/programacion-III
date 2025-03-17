@@ -10,12 +10,13 @@ public class Tarjeta extends MetodoPago implements PagoFisico {
     private String direccion;
 
 
-    public Tarjeta(String fecha, String hora, String nombreConsumidor, String nombreDestinatario, double monto, int id, String tipo, int numeroCuenta, int cantidadCuotas,String direccion){
+    public Tarjeta(String fecha, String hora, String nombreConsumidor, String nombreDestinatario, double monto, int id, String tipo, int numeroCuenta, String fechaVencimiento, int cantidadCuotas,String direccion) {
         super(fecha, hora, nombreConsumidor, nombreDestinatario, monto, id);
-        this.tipo=tipo;
-        this.numeroCuenta=numeroCuenta;
+        this.tipo = tipo;
+        this.numeroCuenta = numeroCuenta;
+        this.fechaVencimiento = fechaVencimiento;
         definirCantidadCuotas(cantidadCuotas);
-        this.direccion=direccion;
+        this.direccion = direccion;
     }
 
     public String getTipo() {
@@ -32,6 +33,14 @@ public class Tarjeta extends MetodoPago implements PagoFisico {
 
     public void setNumeroCuenta(int numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
+    }
+
+    public String getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     public double getMonto() {
@@ -67,5 +76,4 @@ public class Tarjeta extends MetodoPago implements PagoFisico {
             setCantidadCuotas(cantidadCuotas);
         }
     }
-
 }
