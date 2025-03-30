@@ -1,3 +1,5 @@
+package model;
+
 public class Paciente {
     private String nombre;
     private int prioridad;
@@ -25,7 +27,7 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente{" +
+        return "model.Paciente{" +
                 "nombre='" + nombre + '\'' +
                 ", prioridad=" + prioridad +
                 '}';

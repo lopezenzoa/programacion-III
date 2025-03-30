@@ -1,4 +1,7 @@
-import java.util.Map;
+import controller.Guardia;
+import controller.PacienteController;
+import model.Paciente;
+import view.PacienteView;
 
 public class Main {
     public static void main(String[] args) {
@@ -97,14 +100,31 @@ public class Main {
          */
 
         // Ejercicio 5
+        /*
         Paciente paciente = new Paciente("Enzo", 1);
         Paciente paciente_2 = new Paciente("Ailen", 2);
 
+        PacienteView view = new PacienteView();
+
+        PacienteController pacienteController = new PacienteController(paciente, view);
+        PacienteController pacienteController_2 = new PacienteController(paciente_2, view);
+
         Guardia guardia = new Guardia();
 
-        System.out.println(guardia.agregarPaciente(paciente));
-        System.out.println(guardia.agregarPaciente(paciente_2));
+        System.out.println("Agregando pacientes");
+        guardia.agregarPaciente(pacienteController_2);
+        guardia.agregarPaciente(pacienteController);
 
-        
+        System.out.println();
+
+        System.out.println("Atendiendo Pacientes");
+        guardia.atenderPaciente();
+
+        System.out.println();
+
+        System.out.println("Mostrando al siguiente paciente");
+        guardia.mostrarSiguientePaciente();
+
+         */
     }
 }
