@@ -8,12 +8,14 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
        // Ejercicio 1 - Dada una lista de números enteros, utiliza filter para obtener solo los números pares y guárdalos en una nueva lista.
-/*
+        /*
        List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
        List<Integer> pares = numeros.stream().filter(n -> n % 2 == 0).toList();
 
        // Imprime una lista de numeros pares
-       System.out.println(pares);*/
+       System.out.println(pares);
+
+         */
 
        // Ejercicio 2 - Usa map para convertir cada nombre de una lista en su versión en mayúsculas.
 
@@ -119,13 +121,43 @@ public class Main {
 
          */ // sin utilizar reduce 
 
+        /*
         String nombre_mas_largo = nombres.stream()
                 .reduce((n1, n2) -> n1.length() > n2.length() ? n1 : n2).get(); // campara el n1 con n2 como devuelve un booleano si es verdad (n1.length() > n2.length()?) retorna n1 si es falto retorna n2 (OPERADORES TERNARIOS)
 
         System.out.println(nombre_mas_largo);
 
-        // EJERCICIO 13 - Usa map y Collectors.joining para convertir una lista de enteros en una cadena con valores separados por -.
+         */
 
+        // EJERCICIO 13 - Usa map y Collectors.joining para convertir una lista de enteros en una cadena con valores separados por -.
+        /*
+        String cadena = numeros.stream().map((n1) -> n1.toString()).collect(Collectors.joining(" - ")).toString();
+        System.out.println(cadena);
+
+         */
+
+        // EJERCICIO 14 - Usa Collectors.partitioningBy para separar los números de una lista en pares e impares.
+        /*
+        Map<Boolean, List<Integer>> pares_impares = numeros.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+
+        // Imprime un mapa particionando la lista originales en valores pares e impares
+        System.out.println(pares_impares);
+
+         */
+
+        // EJERCICIO 15 - Usa filter, map y reduce para obtener la suma de los cuadrados de los números impares de una lista.
+        /*
+        numeros = Arrays.asList(1, 2, 3, 4, 5);
+
+        Integer suma_cuadrados_impares = numeros.stream()
+                .filter(n -> n % 2 != 0)
+                .map(n -> n * n)
+                .reduce(Integer::sum)
+                .get();
+
+        System.out.println(suma_cuadrados_impares);
+
+         */
     }
 
 
