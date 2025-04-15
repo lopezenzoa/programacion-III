@@ -10,6 +10,14 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String nombre, String apellido, String dni, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.email = email;
+    }
+
+    // Este constructor lo uso para actualizar un usuario.
     public Usuario(int id_usuario, String nombre, String apellido, String dni, String email) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
