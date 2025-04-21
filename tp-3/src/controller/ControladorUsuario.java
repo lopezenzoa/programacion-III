@@ -5,8 +5,10 @@ import model.UsuarioDAO;
 import view.VistaUsuario;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
 
 public class ControladorUsuario {
     private UsuarioDAO modelo;

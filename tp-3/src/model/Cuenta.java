@@ -11,6 +11,12 @@ public class Cuenta {
     public Cuenta() {
     }
 
+    public Cuenta(int id_usuario, TipoCuenta tipo, float saldo) {
+        this.id_usuario = id_usuario;
+        this.tipo = tipo;
+        this.saldo = saldo;
+    }
+
     public Cuenta(int id_cuenta, int id_usuario, TipoCuenta tipo, float saldo) {
         this.id_cuenta = id_cuenta;
         this.id_usuario = id_usuario;

@@ -23,7 +23,10 @@ public class ControladorCuenta {
     }
 
     public List<Cuenta> listarCuentas(int id_usuario) throws SQLException {
-        return modelo.listarPorUsuario(id_usuario);
+        return modelo.listar()
+                .stream()
+                .filter(cuenta -> cuenta.getId_usuario() == id_usuario)
+                .toList();
     }
 
     public Optional<Cuenta> obtenerCuentaPorId(int id_cuenta) throws SQLException {
@@ -47,5 +50,33 @@ public class ControladorCuenta {
         return cuentas.stream()
                 .map(Cuenta::getSaldo)
                 .reduce(0.0F, Float::sum);
+    }
+
+    public boolean depositar(int id_cuenta, float cantidad) throws SQLException {
+        Cuenta cuenta = modelo.obtenerPorId(id_cuenta);
+
+        if (cantidad <= 0)
+            return false;
+
+        cuenta.setSaldo(cuenta.getSaldo() + cantidad);
+        modelo.actualizar(cuenta);
+
+        return true;
+    }
+
+    public boolean transferir(int id_cuenta_origen, int id_cuenta_destino, float cantidad) throws SQLException {
+        Cuenta cuentaOrigen = modelo.obtenerPorId(id_cuenta_origen);
+        Cuenta cuentaDestino = modelo.obtenerPorId(id_cuenta_destino);
+
+        if (cantidad <= 0 || cuentaOrigen.getSaldo() >= cantidad)
+            return false;
+
+        cuentaOrigen.setSaldo(cuentaOrigen.getSaldo() - cantidad);
+        cuentaDestino.setSaldo(cuentaDestino.getSaldo() + cantidad);
+
+        modelo.actualizar(cuentaOrigen);
+        modelo.actualizar(cuentaDestino);
+
+        return true;
     }
 }

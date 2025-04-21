@@ -12,6 +12,13 @@ public class Credencial {
     public Credencial() {
     }
 
+    public Credencial(int id_usuario, String username, String password, Permisos permiso) {
+        this.id_usuario = id_usuario;
+        this.username = username;
+        this.password = password;
+        this.permiso = permiso;
+    }
+
     public Credencial(int id_credencial, int id_usuario, String username, String password, Permisos permiso) {
         this.id_credencial = id_credencial;
         this.id_usuario = id_usuario;

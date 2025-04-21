@@ -1,11 +1,14 @@
 package model;
 
+import controller.enums.Permisos;
 import model.interfaces.I_Repositorio;
 import model.util.ConexionMySQL;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CredencialDAO implements I_Repositorio<Credencial> {
@@ -34,13 +37,23 @@ public class CredencialDAO implements I_Repositorio<Credencial> {
     }
 
     @Override
-    public void insertar(Credencial credencial) throws SQLException {
+    public int insertar(Credencial credencial) throws SQLException {
 
     }
 
     @Override
     public List<Credencial> listar() throws SQLException {
-        return List.of();
+        String sql= "SELECT * FROM credenciales;";
+        List<Credencial> credenciales = new ArrayList<>();
+
+        try(Statement statement= conexionMySQL.createStatement()){
+            ResultSet rt= statement.executeQuery(sql);
+
+            while(rt.next()){
+                credenciales.add(crearCredencial(rt));
+            }
+        }
+        return credenciales;
     }
 
     @Override
@@ -56,5 +69,17 @@ public class CredencialDAO implements I_Repositorio<Credencial> {
     @Override
     public void eliminar(int id) throws SQLException {
 
+    }
+
+    public static Credencial crearCredencial(ResultSet rt) throws SQLException{
+        Credencial credencial= new Credencial();
+
+        credencial.setId_credencial(rt.getInt("id_credencial"));
+        credencial.setId_usuario(rt.getInt("id_usuario"));
+        credencial.setUsername(rt.getString("username"));
+        credencial.setPassword(rt.getString("pass"));
+        credencial.setPermiso(Permisos.valueOf(rt.getString("permiso")));
+
+        return credencial;
     }
 }

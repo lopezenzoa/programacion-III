@@ -5,8 +5,13 @@ import model.Credencial;
 import model.CredencialDAO;
 
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class ControladorCredenciales {
     private CredencialDAO modelo;
@@ -26,4 +31,22 @@ public class ControladorCredenciales {
         return credencial.orElse(null);
 
     }
+
+    public Map<String, Long> agruparPorTipo() throws SQLException {
+        Map<String, Long> tipos = new HashMap<>();
+
+        // String sql = "SELECT permiso, COUNT(*) AS cantidad FROM credenciales GROUP BY permiso;";
+
+        tipos = modelo.listar()
+                .stream()
+                .collect(Collectors.groupingBy(
+                        credencial -> credencial.getPermiso().toString(),
+                        Collectors.counting()));
+
+        System.out.println(tipos);
+
+        return tipos;
+    }
+
+
 }
