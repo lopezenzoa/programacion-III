@@ -17,7 +17,7 @@ public class CuentaDAO implements I_Repositorio<Cuenta> {
     }
 
     public void crearTablaCuentas() {
-        String sql = "CREATE TABLE cuentas (\n" +
+        String sql = "CREATE TABLE IF NOT EXISTS cuentas (\n" +
                 "  id_cuenta INT AUTO_INCREMENT PRIMARY KEY NOT NULL,\n" +
                 "  id_usuario INT,\n" +
                 "  tipo VARCHAR(255),\n" +
@@ -35,7 +35,7 @@ public class CuentaDAO implements I_Repositorio<Cuenta> {
 
     @Override
     public int insertar(Cuenta cuenta) throws SQLException {
-        String sql = "INSERT INTO cuenta(id_usuario, tipo, saldo, fecha_creacion) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO cuentas(id_usuario, tipo, saldo, fecha_creacion) VALUES (?, ?, ?, ?);";
 
         try (PreparedStatement pstmt = conexionMySQL.prepareStatement(sql)) {
             pstmt.setInt(1, cuenta.getId_usuario());
@@ -85,7 +85,7 @@ public class CuentaDAO implements I_Repositorio<Cuenta> {
 
     @Override
     public void actualizar(Cuenta nuevo) throws SQLException {
-        String sql = "UPDATE cuenta SET id_usuario = ?, tipo = ?, saldo = ? WHERE id_cuenta = ?;";
+        String sql = "UPDATE cuentas SET id_usuario = ?, tipo = ?, saldo = ? WHERE id_cuenta = ?;";
 
         try (PreparedStatement pstmt = conexionMySQL.prepareStatement(sql)) {
             pstmt.setInt(1, nuevo.getId_usuario());

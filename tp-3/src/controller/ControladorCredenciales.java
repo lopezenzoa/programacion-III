@@ -24,6 +24,7 @@ public class ControladorCredenciales {
         modelo.insertar(new Credencial(id_usuario, username, password, permisos));
     }
 
+    /*
     public Credencial validarCredenciales(String username, String password) throws SQLException {
         Optional<Credencial> credencial = modelo.obtenerPorUsername(username);
 
@@ -32,20 +33,14 @@ public class ControladorCredenciales {
 
     }
 
+     */
+
     public Map<String, Long> agruparPorTipo() throws SQLException {
-        Map<String, Long> tipos = new HashMap<>();
-
-        // String sql = "SELECT permiso, COUNT(*) AS cantidad FROM credenciales GROUP BY permiso;";
-
-        tipos = modelo.listar()
+        return modelo.listar()
                 .stream()
                 .collect(Collectors.groupingBy(
                         credencial -> credencial.getPermiso().toString(),
                         Collectors.counting()));
-
-        System.out.println(tipos);
-
-        return tipos;
     }
 
 
