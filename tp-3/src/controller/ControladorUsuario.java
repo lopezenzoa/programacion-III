@@ -41,19 +41,11 @@ public class ControladorUsuario {
         return modelo.listar();
     }
 
-    public Optional<Usuario> buscarPorDNI(String dni) throws SQLException {
+    public Optional<Usuario> buscarPorDNIMail(String dni, String email) throws SQLException {
         List<Usuario> usuarios = modelo.listar();
 
         return usuarios.stream()
-                .filter(u -> u.getDni().equals(dni))
-                .findAny();
-    }
-
-    public Optional<Usuario> buscarPorEmail(String email) throws SQLException {
-        List<Usuario> usuarios = modelo.listar();
-
-        return usuarios.stream()
-                .filter(u -> u.getEmail().equals(email))
+                .filter(u -> u.getDni().equals(dni) || u.getEmail().equals(email))
                 .findAny();
     }
 

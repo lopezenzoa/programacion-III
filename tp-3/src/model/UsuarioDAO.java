@@ -35,7 +35,7 @@ public class UsuarioDAO implements I_Repositorio<Usuario> {
 
     @Override
     public int insertar(Usuario usuario) throws SQLException {
-        String sql = "INSERT INTO usuarios(nombre, apellido, dni, email) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO usuarios(nombre, apellido, dni, email, fecha_creacion) VALUES (?, ?, ?, ?, NOW());";
 
         try (PreparedStatement pstmt = conexionMySQL.prepareStatement(sql)) {
             pstmt.setString(1, usuario.getNombre());

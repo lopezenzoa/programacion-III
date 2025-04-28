@@ -24,16 +24,18 @@ public class ControladorCredenciales {
         modelo.insertar(new Credencial(id_usuario, username, password, permisos));
     }
 
-    /*
     public Credencial validarCredenciales(String username, String password) throws SQLException {
-        Optional<Credencial> credencial = modelo.obtenerPorUsername(username);
+        List<Credencial> credenciales = modelo.listar();
+
+        Optional<Credencial> credencialOptional = credenciales.stream()
+                .filter(c ->
+                        c.getUsername().equals(username) && c.getPassword().equals(password)
+                ).findFirst();
 
         // retorno el ID del usuario para depues buscarlo en la tabla por el controlador correspondiente
-        return credencial.orElse(null);
+        return credencialOptional.orElse(null);
 
     }
-
-     */
 
     public Map<String, Long> agruparPorTipo() throws SQLException {
         return modelo.listar()

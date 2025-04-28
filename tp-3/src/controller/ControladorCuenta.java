@@ -18,8 +18,8 @@ public class ControladorCuenta {
         this.modelo = new CuentaDAO();
     }
 
-    public void agregarCuenta(int id_usuario, TipoCuenta tipo, float saldo) throws SQLException {
-        modelo.insertar(new Cuenta(id_usuario, tipo, saldo));
+    public int agregarCuenta(int id_usuario, TipoCuenta tipo, float saldo) throws SQLException {
+        return modelo.insertar(new Cuenta(id_usuario, tipo, saldo));
     }
 
     public List<Cuenta> listarCuentas(int id_usuario) throws SQLException {
@@ -31,6 +31,14 @@ public class ControladorCuenta {
 
     public Optional<Cuenta> obtenerCuentaPorId(int id_cuenta) throws SQLException {
         return Optional.of(modelo.obtenerPorId(id_cuenta));
+    }
+
+    public List<Cuenta> obtenerCuentasPorUsuario(int id_usuario) throws SQLException {
+        List<Cuenta> cuentas = modelo.listar();
+
+        return cuentas.stream()
+                .filter(cuenta -> cuenta.getId_usuario() == id_usuario)
+                .toList();
     }
 
     public void mostrarCuenta(int id) throws SQLException {
@@ -68,7 +76,7 @@ public class ControladorCuenta {
         Cuenta cuentaOrigen = modelo.obtenerPorId(id_cuenta_origen);
         Cuenta cuentaDestino = modelo.obtenerPorId(id_cuenta_destino);
 
-        if (cantidad <= 0 || cuentaOrigen.getSaldo() >= cantidad)
+        if (cantidad <= 0 || cuentaOrigen.getSaldo() < cantidad)
             return false;
 
         cuentaOrigen.setSaldo(cuentaOrigen.getSaldo() - cantidad);

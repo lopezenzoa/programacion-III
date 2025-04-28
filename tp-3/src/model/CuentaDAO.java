@@ -35,13 +35,12 @@ public class CuentaDAO implements I_Repositorio<Cuenta> {
 
     @Override
     public int insertar(Cuenta cuenta) throws SQLException {
-        String sql = "INSERT INTO cuentas(id_usuario, tipo, saldo, fecha_creacion) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO cuentas(id_usuario, tipo, saldo, fecha_creacion) VALUES (?, ?, ?, NOW());";
 
         try (PreparedStatement pstmt = conexionMySQL.prepareStatement(sql)) {
             pstmt.setInt(1, cuenta.getId_usuario());
             pstmt.setString(2, cuenta.getTipo().toString());
             pstmt.setFloat(3, cuenta.getSaldo());
-            pstmt.setString(4, "NOW()");
 
             pstmt.executeUpdate();
 
