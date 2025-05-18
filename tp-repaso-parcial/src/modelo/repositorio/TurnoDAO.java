@@ -74,7 +74,7 @@ public class TurnoDAO implements IRepositorio<Turno> {
 
     @Override
     public Optional<Turno> guardar(Turno turno) {
-        String sql = "INSERT INTO turno (peluquero_id, fecha_hora, servicio, estado) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO turno (cliente_id, peluquero_id, fecha_hora, servicio, estado) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -100,7 +100,7 @@ public class TurnoDAO implements IRepositorio<Turno> {
 
     @Override
     public boolean actualizar(Turno turno) {
-        String sql = "UPDATE turno SET peluquero_id = ?, fecha_hora = ?, servicio = ?, estado = ? WHERE id = ?";
+        String sql = "UPDATE turno SET cliente_id = ?, peluquero_id = ?, fecha_hora = ?, servicio = ?, estado = ? WHERE id = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -130,7 +130,7 @@ public class TurnoDAO implements IRepositorio<Turno> {
     }
 
     public void crearTabla() {
-        String sql = "CREATE TABLE turno (\n" +
+        String sql = "CREATE TABLE IF NOT EXISTS turno (\n" +
                 "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "cliente_id INT NOT NULL,\n" +
                 "peluquero_id INT NOT NULL,\n" +

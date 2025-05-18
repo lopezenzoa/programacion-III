@@ -71,4 +71,16 @@ public class Turno {
     public void setEstado(Estados estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Turno{" +
+                "id=" + id +
+                ", clienteId=" + clienteId +
+                ", peluqueroId=" + peluqueroId +
+                ", fechaHora=" + fechaHora +
+                ", servicio='" + servicio + '\'' +
+                ", estado=" + estado +
+                '}';
+    }
 }

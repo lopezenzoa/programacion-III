@@ -5,6 +5,7 @@ import modelo.Cliente;
 import modelo.Peluquero;
 import modelo.repositorio.PeluqueroDAO;
 
+import java.util.List;
 import java.util.Optional;
 
 public class PeluqueroControlador {
@@ -24,14 +25,31 @@ public class PeluqueroControlador {
         return peluqueroOptional.orElse(null);
     }
 
-    public boolean insertar(Peluquero peluquero) {
+    public boolean insertar(String nombre, String especialidad) {
+        Peluquero peluquero = new Peluquero();
+        peluquero.setNombre(nombre);
+        peluquero.setEspecialidad(especialidad);
+
         return repositorio.guardar(peluquero).isPresent();
     }
-    public boolean actualizar(Peluquero nuevoPeluquero) {
-        return repositorio.actualizar(nuevoPeluquero);
+    public boolean actualizar(Integer id, String nombre, String especialidad) {
+        // buscarmos el peluquero que queremos modificar
+        Peluquero peluquero = buscarPorId(id);
+
+        peluquero.setNombre(nombre);
+        peluquero.setEspecialidad(especialidad);
+
+        return repositorio.actualizar(peluquero);
     }
 
     public boolean eliminar(int id) {
         return repositorio.eliminarPorId(id);
+    }
+
+    public boolean validarPeluquero(int peluqueroId) {
+        return repositorio.buscarPorId(peluqueroId).isPresent();
+    }
+    public List<Peluquero> listar() {
+        return repositorio.buscarTodos();
     }
 }

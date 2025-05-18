@@ -106,7 +106,7 @@ public class PeluqueroDAO implements IRepositorio<Peluquero> {
 
     @Override
     public boolean eliminarPorId(int id) {
-        String sql= "DELETE peluquero WHERE id= " + id + ";";
+        String sql= "DELETE FROM peluquero WHERE id= " + id + ";";
 
         try(Statement statement= connection.createStatement()){
             int eliminado= statement.executeUpdate(sql);
@@ -121,7 +121,7 @@ public class PeluqueroDAO implements IRepositorio<Peluquero> {
     }
 
     public void crearTabla(){
-        String sql= "CREATE TABLE peluquero (\n" +
+        String sql= "CREATE TABLE IF NOT EXISTS peluquero (\n" +
                 "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "nombre VARCHAR(100) NOT NULL,\n" +
                 "especialidad VARCHAR(50)\n" +

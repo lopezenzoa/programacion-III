@@ -37,4 +37,13 @@ public class Peluquero {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    @Override
+    public String toString() {
+        return "Peluquero{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", especialidad='" + especialidad + '\'' +
+                '}';
+    }
 }
